@@ -295,7 +295,11 @@ libraryDependencies += scalatest
 lazy val scala213Options = Seq(
   scalacOptions ++= {
     minorVersion.value match {
-      case 13 => Seq("-Ymacro-annotations")
+      case 13 =>
+        Seq(
+          "-Ymacro-annotations",
+          "-Xfatal-warnings",
+        )
       case 12 =>
         Seq(
           "-Yno-adapted-args",                // Do not adapt an argument list (either by inserting () or creating a tuple) to match the receiver.
@@ -308,7 +312,7 @@ lazy val scala213Options = Seq(
           "-Ywarn-value-discard",             // Warn when non-Unit expression results are unused.
           "-Xlint:unsound-match",             // Pattern match may not be typesafe.
           "-Xlint:by-name-right-associative", // By-name parameter of right associative operator.
-          "-Xfuture"                          // Turn on future language features.
+          "-Xfuture",                         // Turn on future language features.
         )
     }
   }
